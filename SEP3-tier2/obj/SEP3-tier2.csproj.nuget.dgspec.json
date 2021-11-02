@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/abdullahiisse/RiderProjects/SEP3-tier2/SEP3-tier2/SEP3-tier2.csproj": {}
+    "C:\\Users\\abdul\\RiderProjects\\SEP3-tier2\\SEP3-tier2\\SEP3-tier2.csproj": {}
   },
   "projects": {
-    "/Users/abdullahiisse/RiderProjects/SEP3-tier2/SEP3-tier2/SEP3-tier2.csproj": {
+    "C:\\Users\\abdul\\RiderProjects\\SEP3-tier2\\SEP3-tier2\\SEP3-tier2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/abdullahiisse/RiderProjects/SEP3-tier2/SEP3-tier2/SEP3-tier2.csproj",
+        "projectUniqueName": "C:\\Users\\abdul\\RiderProjects\\SEP3-tier2\\SEP3-tier2\\SEP3-tier2.csproj",
         "projectName": "SEP3-tier2",
-        "projectPath": "/Users/abdullahiisse/RiderProjects/SEP3-tier2/SEP3-tier2/SEP3-tier2.csproj",
-        "packagesPath": "/Users/abdullahiisse/.nuget/packages/",
-        "outputPath": "/Users/abdullahiisse/RiderProjects/SEP3-tier2/SEP3-tier2/obj/",
+        "projectPath": "C:\\Users\\abdul\\RiderProjects\\SEP3-tier2\\SEP3-tier2\\SEP3-tier2.csproj",
+        "packagesPath": "C:\\Users\\abdul\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\abdul\\RiderProjects\\SEP3-tier2\\SEP3-tier2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/abdullahiisse/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\abdul\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -69,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.100-rc.2.21505.57/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

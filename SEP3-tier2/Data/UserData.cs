@@ -6,14 +6,14 @@ using SEP3_tier2.Models;
 
 namespace SEP3_tier2.Data
 {
-    public class WeaponData : IWeaponData
+    public class UserData : IUserData
     {
-        public async Task<IList<userAccount>> getAllWeapons()
+        public async Task<IList<userAccount>>getAllUsers()
         {
 
             using HttpClient client = new HttpClient();
 
-            var responseMessage = await client.GetAsync("http://localhost:8080/userAccounts/1");
+            var responseMessage = await client.GetAsync("http://localhost:8080/user");
 
             var readAsStringAsync = await responseMessage.Content.ReadAsStringAsync();
 

@@ -14,10 +14,10 @@ namespace SEP3_tier2.GraphQL
         [UseFiltering]
         [UseSorting]
         
-        public  Task<IList<userAccount>> GetUsers([Service] IWeaponData context)
+        public  Task<IList<userAccount>> GetUsers([Service] IUserData context)
         {
             
-            return  context.getAllWeapons();
+            return  context.getAllUsers();
         }
         
     }

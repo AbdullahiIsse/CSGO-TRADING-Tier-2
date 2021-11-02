@@ -27,7 +27,7 @@ namespace SEP3_tier2
         public void ConfigureServices(IServiceCollection services)
         {
             
-            services.AddSingleton<IWeaponData, WeaponData>();
+            services.AddSingleton<IUserData, UserData>();
 
             services.AddGraphQLServer()
                 .AddQueryType<Query>()
