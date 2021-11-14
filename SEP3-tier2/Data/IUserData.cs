@@ -7,7 +7,10 @@ namespace SEP3_tier2.Data
     public interface IUserData
     {
 
-        Task<IList<userAccount>> getAllUsers();
+        Task<IList<User>> getAllUsers();
+        
+        
+        void AddUser(User user);
 
 
 

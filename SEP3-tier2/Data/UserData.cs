@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using SEP3_tier2.Models;
@@ -8,7 +10,7 @@ namespace SEP3_tier2.Data
 {
     public class UserData : IUserData
     {
-        public async Task<IList<userAccount>>getAllUsers()
+        public async Task<IList<User>>getAllUsers()
         {
 
             using HttpClient client = new HttpClient();
@@ -19,13 +21,34 @@ namespace SEP3_tier2.Data
 
             
 
-            IList<userAccount> user = JsonSerializer.Deserialize<IList<userAccount>>(readAsStringAsync, new JsonSerializerOptions
+            IList<User> user = JsonSerializer.Deserialize<IList<User>>(readAsStringAsync, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
             });
 
 
             return user;
+        }
+
+        public async void AddUser(User user)
+        {
+            
+            using HttpClient client = new HttpClient();
+
+            var userAsJson = JsonSerializer.Serialize(user);
+
+            HttpContent httpContent = new StringContent(userAsJson, Encoding.UTF8, "application/json");
+
+
+            HttpResponseMessage httpResponseMessage = await client.PostAsync("http://localhost:8080/user/", httpContent);
+            
+            if (!httpResponseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception("failed to add data");
+            }
+
+            
+
         }
     }
 }

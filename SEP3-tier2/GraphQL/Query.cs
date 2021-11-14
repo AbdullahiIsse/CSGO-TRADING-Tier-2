@@ -14,7 +14,7 @@ namespace SEP3_tier2.GraphQL
         [UseFiltering]
         [UseSorting]
         
-        public  Task<IList<userAccount>> GetUsers([Service] IUserData context)
+        public  Task<IList<User>> GetUsers([Service] IUserData context)
         {
             
             return  context.getAllUsers();

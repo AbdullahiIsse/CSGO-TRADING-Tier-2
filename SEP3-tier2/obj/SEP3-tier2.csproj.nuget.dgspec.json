@@ -20,7 +20,8 @@
           "net5.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.telerik.com/nuget": {}
         },
         "frameworks": {
           "net5.0": {
@@ -44,11 +45,11 @@
             },
             "HotChocolate.AspNetCore": {
               "target": "Package",
-              "version": "[12.1.0-preview.3, )"
+              "version": "[12.0.1, )"
             },
             "HotChocolate.Data": {
               "target": "Package",
-              "version": "[12.1.0-preview.3, )"
+              "version": "[12.0.1, )"
             }
           },
           "imports": [

@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using SEP3_tier2.Data;
 using SEP3_tier2.GraphQL;
 
+
 namespace SEP3_tier2
 {
     public class Startup
@@ -27,12 +28,14 @@ namespace SEP3_tier2
         public void ConfigureServices(IServiceCollection services)
         {
             
+            services.AddInMemorySubscriptions();
             services.AddSingleton<IUserData, UserData>();
 
             services.AddGraphQLServer()
                 .AddQueryType<Query>()
                 .AddFiltering()
-                .AddSorting();
+                .AddSorting()
+                .AddMutationType<Mutation>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +52,8 @@ namespace SEP3_tier2
             {
                 app.UseRouting().UseEndpoints(endpoints => { endpoints.MapGraphQL(); });
             });
+            
+           
         }
     }
 }
