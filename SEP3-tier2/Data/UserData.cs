@@ -20,7 +20,6 @@ namespace SEP3_tier2.Data
             var readAsStringAsync = await responseMessage.Content.ReadAsStringAsync();
 
             
-
             IList<User> user = JsonSerializer.Deserialize<IList<User>>(readAsStringAsync, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
@@ -46,9 +45,19 @@ namespace SEP3_tier2.Data
             {
                 throw new Exception("failed to add data");
             }
-
             
-
+        }
+        
+        
+        public async void RemoveUser(int id)
+        {
+            using HttpClient client = new HttpClient();
+            HttpResponseMessage httpResponseMessage = await client.DeleteAsync($"http://localhost:8080/user/{id}");
+            
+            if (!httpResponseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception("failed to add data");
+            }
         }
     }
 }
