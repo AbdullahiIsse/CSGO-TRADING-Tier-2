@@ -19,16 +19,12 @@ namespace SEP3_tier2.GraphQL
             
             return  context.getAllUsers();
         }
-        
+        [UseFiltering]
+        [UseSorting]
         public  Task<IList<Items>> GetItems([Service] IItemData context)
         {
             
             return  context.getAllItems();
-        }
-        
-        public  Task<Items> GetItemById([Service] IItemData context,long id)
-        {
-            return  context.getItemByID(id);
         }
         
         

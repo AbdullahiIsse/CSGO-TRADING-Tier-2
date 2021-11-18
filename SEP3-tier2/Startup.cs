@@ -29,8 +29,8 @@ namespace SEP3_tier2
         {
             
             services.AddInMemorySubscriptions();
-            services.AddSingleton<IUserData, UserData>();
-            services.AddSingleton<IItemData, ItemData>();
+            services.AddScoped<IUserData, UserData>();
+            services.AddScoped<IItemData, ItemData>();
             services.AddSingleton<IPaymentData, PaymentData>();
 
             services.AddGraphQLServer()
@@ -47,7 +47,7 @@ namespace SEP3_tier2
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseWebSockets();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
