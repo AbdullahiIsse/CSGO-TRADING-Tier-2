@@ -7,5 +7,6 @@ namespace SEP3_tier2.Data
     public interface IItemData
     {
         Task<IList<Items>> getAllItems();
+        Task<Items> getItemByID(long id);
     }
 }
