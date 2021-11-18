@@ -24,5 +24,22 @@ namespace SEP3_tier2.Data
             
             return items;
         }
+
+        public async Task<Items> getItemByID(long id)
+        {
+            using HttpClient client = new HttpClient();
+
+            var responseMessage = await client.GetAsync("http://localhost:8080/items/"+id);
+
+            var readAsStringAsync = await responseMessage.Content.ReadAsStringAsync();
+
+            
+            Items item = JsonSerializer.Deserialize<Items>(readAsStringAsync, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            
+            return item;
+        }
     }
 }
