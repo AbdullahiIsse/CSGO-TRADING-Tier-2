@@ -20,5 +20,14 @@ namespace SEP3_tier2.GraphQL
             return  context.getAllUsers();
         }
         
+        public  Task<IList<Items>> GetItems([Service] IItemData context)
+        {
+            
+            return  context.getAllItems();
+        }
+        
+        
+        
+        
     }
 }
