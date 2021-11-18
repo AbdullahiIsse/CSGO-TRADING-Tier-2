@@ -28,7 +28,6 @@ namespace SEP3_tier2.GraphQL
 
         }
         
-        
         public async Task<int> DeleteUserAsync([Service]ITopicEventSender eventSender, [Service] IUserData context,int id)
         {
             context.RemoveUser(id);
@@ -36,15 +35,29 @@ namespace SEP3_tier2.GraphQL
             await eventSender.SendAsync("RemoveTodo", id);
 
             return id;
-
-
+            
         }
         
         
-        
-        
-        
-        
+        public async Task<Payment> AddPaymentAsync([Service]ITopicEventSender eventSender, [Service] IPaymentData context,string name,string cardNumber, string expirationDate, string securityCode)
+        {
+            
+            var payment = new Payment
+            {
+                name = name,
+                cardNumber = cardNumber,
+                expirationDate = expirationDate,
+                securityCode = securityCode
+                
+            };
+            
+            context.AddPayment(payment);
+
+            await eventSender.SendAsync("PaymentCreated", payment);
+            
+            return payment;
+
+        }
         
         
         

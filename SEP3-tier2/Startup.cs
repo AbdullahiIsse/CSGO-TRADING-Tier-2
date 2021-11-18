@@ -31,6 +31,7 @@ namespace SEP3_tier2
             services.AddInMemorySubscriptions();
             services.AddSingleton<IUserData, UserData>();
             services.AddSingleton<IItemData, ItemData>();
+            services.AddSingleton<IPaymentData, PaymentData>();
 
             services.AddGraphQLServer()
                 .AddQueryType<Query>()
