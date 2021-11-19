@@ -12,11 +12,14 @@ namespace SEP3_tier2.Data
         {
             using HttpClient client = new HttpClient();
 
-            var paymentAsJson = JsonSerializer.Serialize(payment);
+            var paymentAsJson = JsonSerializer.Serialize(payment,new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
 
             HttpContent httpContent = new StringContent(paymentAsJson, Encoding.UTF8, "application/json");
             
-            HttpResponseMessage httpResponseMessage = await client.PostAsync("http://localhost:8080/payment/", httpContent);
+            HttpResponseMessage httpResponseMessage = await client.PostAsync("http://localhost:8080/payment", httpContent);
             
             if (!httpResponseMessage.IsSuccessStatusCode)
             {

@@ -39,15 +39,15 @@ namespace SEP3_tier2.GraphQL
         }
         
         
-        public async Task<Payment> AddPaymentAsync([Service]ITopicEventSender eventSender, [Service] IPaymentData context,string name,string cardNumber, string expirationDate, string securityCode)
+        public async Task<Payment> AddPaymentAsync([Service]ITopicEventSender eventSender, [Service] IPaymentData context,string name,string cardnumber, string expirationdate, string securitycode)
         {
             
             var payment = new Payment
             {
                 name = name,
-                cardNumber = cardNumber,
-                expirationDate = expirationDate,
-                securityCode = securityCode
+                cardnumber = cardnumber,
+                expirationdate = expirationdate,
+                securitycode = securitycode
                 
             };
             
