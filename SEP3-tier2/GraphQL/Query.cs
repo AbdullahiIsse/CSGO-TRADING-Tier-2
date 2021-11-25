@@ -27,6 +27,17 @@ namespace SEP3_tier2.GraphQL
             return  context.getAllItems();
         }
         
+        public Task<Items> GetItemById([Service] IItemData context,long id)
+        {
+            return  context.getItemByID(id);
+        }
+
+        
+        public Task<User> ValidateUser([Service] IUserData context,string username,string password)
+        {
+            return context.ValidateUser(username, password);
+        }
+        
         
     }
 }

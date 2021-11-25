@@ -37,7 +37,8 @@ namespace SEP3_tier2
                 .AddQueryType<Query>()
                 .AddFiltering()
                 .AddSorting()
-                .AddMutationType<Mutation>();
+                .AddMutationType<Mutation>()
+                .AddSubscriptionType<Subscription>();  
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

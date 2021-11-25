@@ -9,7 +9,8 @@ namespace SEP3_tier2.Data
 
         Task<IList<User>> getAllUsers();
         void AddUser(User user);
-        void RemoveUser(int id);
+        void RemoveUser(long id);
+        Task<User> ValidateUser(string userName, string Password);
 
     }
 }

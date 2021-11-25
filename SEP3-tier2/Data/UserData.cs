@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -49,7 +50,7 @@ namespace SEP3_tier2.Data
         }
         
         
-        public async void RemoveUser(int id)
+        public async void RemoveUser(long id)
         {
             using HttpClient client = new HttpClient();
             HttpResponseMessage httpResponseMessage = await client.DeleteAsync($"http://localhost:8080/user/{id}");
@@ -59,5 +60,40 @@ namespace SEP3_tier2.Data
                 throw new Exception("failed to add data");
             }
         }
+        
+        
+        public async Task<User> ValidateUser(string userName, string Password)
+        {
+            using HttpClient httpClient = new HttpClient();
+
+            var httpResponseMessage =
+                await httpClient.GetAsync($"http://localhost:8080/user/validate/?username={userName}&password={Password}");
+            
+            if (httpResponseMessage.StatusCode != HttpStatusCode.Found)
+            {
+                throw new Exception("User not Found");
+            }
+
+
+            var readAsStringAsync = await httpResponseMessage.Content.ReadAsStringAsync();
+
+
+            User user = JsonSerializer.Deserialize<User>(readAsStringAsync, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            return user;
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
 }

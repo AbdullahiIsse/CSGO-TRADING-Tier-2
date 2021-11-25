@@ -28,7 +28,7 @@ namespace SEP3_tier2.GraphQL
 
         }
         
-        public async Task<int> DeleteUserAsync([Service]ITopicEventSender eventSender, [Service] IUserData context,int id)
+        public async Task<long> DeleteUserAsync([Service]ITopicEventSender eventSender, [Service] IUserData context,long id)
         {
             context.RemoveUser(id);
             
