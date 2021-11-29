@@ -41,9 +41,14 @@ namespace SEP3_tier2.GraphQL
         
         [UseFiltering]
         [UseSorting]
-        public  Task<IList<SaleOffer>> GetOffers([Service] IOfferData context)
+        public Task<IList<SaleOffer>> GetOffers([Service] IOfferData context)
         {
             return  context.getAllOffers();
+        }
+        
+        public Task<SaleOffer> GetOfferById([Service] IOfferData context,long id)
+        {
+            return  context.getOfferDataByID(id);
         }
         
     }

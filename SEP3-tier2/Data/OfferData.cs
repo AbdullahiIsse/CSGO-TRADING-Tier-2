@@ -23,7 +23,6 @@ namespace SEP3_tier2.Data
                 PropertyNameCaseInsensitive = true
             });
             
-            Console.WriteLine(items);
             return items;
         }
 
