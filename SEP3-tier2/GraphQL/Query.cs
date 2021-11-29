@@ -33,6 +33,11 @@ namespace SEP3_tier2.GraphQL
             return  context.getItemByID(id);
         }
 
+        public Task<User> GetUserById([Service] IUserData context,long id)
+        {
+            return  context.getUserByID(id);
+        }
+        
         
         public Task<User> ValidateUser([Service] IUserData context,string username,string password)
         {
