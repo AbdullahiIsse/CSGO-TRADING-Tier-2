@@ -86,7 +86,22 @@ namespace SEP3_tier2.Data
             return user;
         }
         
-        
+        public async Task<User> getUserByID(long id)
+        {
+            using HttpClient client = new HttpClient();
+
+            var responseMessage = await client.GetAsync("http://localhost:8080/user/"+id);
+
+            var readAsStringAsync = await responseMessage.Content.ReadAsStringAsync();
+
+            
+            User user = JsonSerializer.Deserialize<User>(readAsStringAsync, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            
+            return user;
+        }
         
         
         

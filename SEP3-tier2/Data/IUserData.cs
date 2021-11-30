@@ -11,6 +11,8 @@ namespace SEP3_tier2.Data
         void AddUser(User user);
         void RemoveUser(long id);
         Task<User> ValidateUser(string userName, string Password);
+        
+        Task<User> getUserByID(long id);
 
     }
 }
