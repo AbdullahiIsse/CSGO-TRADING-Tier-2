@@ -2,10 +2,10 @@ namespace SEP3_tier2.Models
 {
     public class Chat
     {
-        public long id;
-        
-        private string ChatList;
+        public long id { get; set; }
 
-        private long user_id;
+        public string ChatList { get; set; }
+
+        public long user_id { get; set; }
     }
 }
