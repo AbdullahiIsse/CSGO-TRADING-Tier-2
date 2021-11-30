@@ -28,6 +28,20 @@ namespace SEP3_tier2.GraphQL
             return  context.getAllItems();
         }
         
+        [UseFiltering]
+        [UseSorting]
+        public  Task<IList<Chat>> GetChat([Service] IChatData context)
+        {
+            
+            return  context.getAllChat();
+        }
+        
+        public Task<Chat> GetChatById([Service] IChatData context,long id)
+        {
+            return  context.getChatByID(id);
+        }
+
+        
         public Task<Items> GetItemById([Service] IItemData context,long id)
         {
             return  context.getItemByID(id);

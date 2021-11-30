@@ -33,6 +33,7 @@ namespace SEP3_tier2
             services.AddScoped<IItemData, ItemData>();
             services.AddScoped<IOfferData, OfferData>();
             services.AddScoped<IPaymentData, PaymentData>();
+            services.AddScoped<IChatData, ChatData>();
 
             services.AddGraphQLServer()
                 .AddQueryType<Query>()
