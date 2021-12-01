@@ -8,5 +8,7 @@ namespace SEP3_tier2.Data
     {
         Task<IList<Chat>> getAllChat();
         Task<Chat> getChatByID(long id);
+        
+        void AddChat(Chat chat);
     }
 }

@@ -60,6 +60,24 @@ namespace SEP3_tier2.GraphQL
         }
         
         
+        public async Task<Chat> AddChatAsync([Service]ITopicEventSender eventSender, [Service] IChatData context,long id, string Chatlist,long user_id)
+        {
+            
+            var chat = new Chat
+            {
+                id = id,
+                Chatlist = Chatlist,
+                user_id = user_id
+            };
+            
+            context.AddChat(chat);
+
+            await eventSender.SendAsync("ChatCreated", chat);
+            
+            return chat;
+
+        }
+        
         
     }
 }

@@ -20,8 +20,7 @@ namespace SEP3_tier2.GraphQL
             return  context.getAllUsers();
         }
         
-        [UseFiltering]
-        [UseSorting]
+        
         public  Task<IList<Items>> GetItems([Service] IItemData context)
         {
             
@@ -58,8 +57,6 @@ namespace SEP3_tier2.GraphQL
             return context.ValidateUser(username, password);
         }
         
-        [UseFiltering]
-        [UseSorting]
         public Task<IList<SaleOffer>> GetOffers([Service] IOfferData context)
         {
             return  context.getAllOffers();
