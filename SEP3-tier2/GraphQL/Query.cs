@@ -35,9 +35,9 @@ namespace SEP3_tier2.GraphQL
             return  context.getAllChat();
         }
         
-        public Task<Chat> GetChatById([Service] IChatData context,long id)
+        public Task<Chat> GetChatById([Service] IChatData context,long user_id)
         {
-            return  context.getChatByID(id);
+            return  context.getChatByID(user_id);
         }
 
         

@@ -7,7 +7,7 @@ namespace SEP3_tier2.Data
     public interface IChatData
     {
         Task<IList<Chat>> getAllChat();
-        Task<Chat> getChatByID(long id);
+        Task<Chat> getChatByID(long user_id);
         
         void AddChat(Chat chat);
     }

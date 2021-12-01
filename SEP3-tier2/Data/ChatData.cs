@@ -27,11 +27,11 @@ namespace SEP3_tier2.Data
             return chat;
         }
         
-        public async Task<Chat> getChatByID(long id)
+        public async Task<Chat> getChatByID(long user_id)
         {
             using HttpClient client = new HttpClient();
 
-            var responseMessage = await client.GetAsync("http://localhost:8080/chat/"+id);
+            var responseMessage = await client.GetAsync("http://localhost:8080/chat/"+user_id);
 
             var readAsStringAsync = await responseMessage.Content.ReadAsStringAsync();
             
