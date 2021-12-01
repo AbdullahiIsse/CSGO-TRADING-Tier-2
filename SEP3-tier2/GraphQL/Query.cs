@@ -67,5 +67,15 @@ namespace SEP3_tier2.GraphQL
             return  context.getOfferDataByID(id);
         }
         
+        public Task<IList<Wallet>> GetWallets([Service] IWalletData context)
+        {
+            return  context.getAllWallets();
+        }
+        
+        public Task<Wallet> GetWalletById([Service] IWalletData context,long id)
+        {
+            return  context.getWalletById(id);
+        }
+        
     }
 }

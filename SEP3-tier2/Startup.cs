@@ -32,6 +32,7 @@ namespace SEP3_tier2
             services.AddScoped<IUserData, UserData>();
             services.AddScoped<IItemData, ItemData>();
             services.AddScoped<IOfferData, OfferData>();
+            services.AddScoped<IWalletData, WalletData>();
             services.AddScoped<IPaymentData, PaymentData>();
             services.AddScoped<IChatData, ChatData>();
 
