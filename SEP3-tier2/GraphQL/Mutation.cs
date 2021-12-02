@@ -39,7 +39,7 @@ namespace SEP3_tier2.GraphQL
         }
         
         
-        public async Task<Payment> AddPaymentAsync([Service]ITopicEventSender eventSender, [Service] IPaymentData context,string name,string cardnumber, string expirationdate, string securitycode)
+        public async Task<Payment> AddPaymentAsync([Service]ITopicEventSender eventSender, [Service] IPaymentData context,string name,string cardnumber, string expirationdate, string securitycode, string wallet)
         {
             
             var payment = new Payment
@@ -47,7 +47,8 @@ namespace SEP3_tier2.GraphQL
                 name = name,
                 cardnumber = cardnumber,
                 expirationdate = expirationdate,
-                securitycode = securitycode
+                securitycode = securitycode,
+                wallet = wallet
                 
             };
             
@@ -75,6 +76,26 @@ namespace SEP3_tier2.GraphQL
             await eventSender.SendAsync("ChatCreated", chat);
             
             return chat;
+
+        }
+        
+        public async Task<SaleOffer> AddSaleOfferAsync([Service]ITopicEventSender eventSender, [Service] IOfferData context,long id, long item_id, int sale_price, long wallet_id)
+        {
+
+            var saleOffer = new SaleOffer
+            {
+                id = id,
+                item_id = item_id,
+                sale_price = sale_price,
+                wallet_id = wallet_id
+
+            };
+            
+            context.AddSaleOffer(saleOffer);
+
+            await eventSender.SendAsync("ChatCreated", saleOffer);
+            
+            return saleOffer;
 
         }
         

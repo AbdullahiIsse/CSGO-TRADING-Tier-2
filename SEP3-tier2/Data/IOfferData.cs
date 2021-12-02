@@ -8,5 +8,7 @@ namespace SEP3_tier2.Data
     {
         Task<IList<SaleOffer>> getAllOffers();
         Task<SaleOffer> getOfferDataByID(long id);
+        
+        void AddSaleOffer(SaleOffer saleOffer);
     }
 }
