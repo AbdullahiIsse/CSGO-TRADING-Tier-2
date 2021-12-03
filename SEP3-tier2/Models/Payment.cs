@@ -7,5 +7,7 @@ namespace SEP3_tier2.Models
         public string cardnumber { get; set; }
         public string expirationdate { get; set; }
         public string securitycode { get; set; }
+
+        public string wallet { get; set; }
     }
 }
