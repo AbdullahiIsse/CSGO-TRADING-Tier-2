@@ -8,6 +8,6 @@ namespace SEP3_tier2.Models
         public string expirationdate { get; set; }
         public string securitycode { get; set; }
 
-        public string wallet { get; set; }
+        public long user_id { get; set; }
     }
 }

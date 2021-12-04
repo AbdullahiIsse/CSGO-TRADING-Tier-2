@@ -14,68 +14,98 @@ namespace SEP3_tier2.GraphQL
         [UseFiltering]
         [UseSorting]
         
-        public  Task<IList<User>> GetUsers([Service] IUserData context)
+        public  async Task<IList<User>> GetUsers([Service] IUserData context)
         {
             
-            return  context.getAllUsers();
-        }
-        
-        
-        public  Task<IList<Items>> GetItems([Service] IItemData context)
-        {
-            
-            return  context.getAllItems();
+            return  await context.getAllUsers();
         }
         
         [UseFiltering]
         [UseSorting]
-        public  Task<IList<Chat>> GetChat([Service] IChatData context)
+        public  async Task<IList<Items>> GetItems([Service] IItemData context)
         {
             
-            return  context.getAllChat();
+            return  await context.getAllItems();
         }
         
-        public Task<Chat> GetChatById([Service] IChatData context,long user_id)
+        [UseFiltering]
+        [UseSorting]
+        public  async Task<IList<Chat>> GetChat([Service] IChatData context)
         {
-            return  context.getChatByID(user_id);
+            
+            return  await context.getAllChat();
+        }
+        
+        public async Task<Chat> GetChatById([Service] IChatData context,long id)
+        {
+            return  await context.getChatByID(id);
         }
 
         
-        public Task<Items> GetItemById([Service] IItemData context,long id)
+        public async Task<Items> GetItemById([Service] IItemData context,long id)
         {
-            return  context.getItemByID(id);
+            return  await context.getItemByID(id);
         }
 
-        public Task<User> GetUserById([Service] IUserData context,long id)
+        public async Task<User> GetUserById([Service] IUserData context,long id)
         {
-            return  context.getUserByID(id);
+            return  await context.getUserByID(id);
         }
         
         
-        public Task<User> ValidateUser([Service] IUserData context,string username,string password)
+        public async Task<User> ValidateUser([Service] IUserData context,string username,string password)
         {
-            return context.ValidateUser(username, password);
+            return await context.ValidateUser(username, password);
         }
         
-        public Task<IList<SaleOffer>> GetOffers([Service] IOfferData context)
+        [UseFiltering]
+        [UseSorting]
+        public async Task<IList<SaleOffer>> GetOffers([Service] IOfferData context)
         {
-            return  context.getAllOffers();
+            return await context.getAllOffers();
         }
         
-        public Task<SaleOffer> GetOfferById([Service] IOfferData context,long id)
+        public async Task<SaleOffer> GetOfferById([Service] IOfferData context,long id)
         {
-            return  context.getOfferDataByID(id);
+            return  await context.getOfferDataByID(id);
         }
         
-        public Task<IList<Wallet>> GetWallets([Service] IWalletData context)
+        
+        public async Task<long> GetCartCountById([Service] IShoppingCartData context,long id)
         {
-            return  context.getAllWallets();
+            return await context.CountCartById(id);
         }
         
-        public Task<Wallet> GetWalletById([Service] IWalletData context,long id)
+        
+        public async Task<IList<ShowShoppingCart>> GetShoppingCartById([Service] IShoppingCartData context,long id)
         {
-            return  context.getWalletById(id);
+            return await context.ShowShoppingCartById(id);
         }
+        
+        
+        public async Task<long> GetTotalPriceById([Service] IShoppingCartData context,long id)
+        {
+            return await context.GetTotalPriceById(id);
+        }
+
+
+
+        public async Task<Payment> GetPaymentByUserId([Service] IPaymentData context, long id)
+        {
+            return await context.GetPaymentById(id);
+        }
+        
+        public async Task<long> GetSumOfPriceById([Service] IWalletData context,long id)
+        {
+            return await context.SumOfPrice(id);
+        }
+        
+        
+
+        
+        
+        
+        
         
     }
 }
