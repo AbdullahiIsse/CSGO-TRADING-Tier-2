@@ -25,6 +25,25 @@ namespace SEP3_tier2.GraphQL
 
             
             return user;
+            
+        }
+        
+        public async Task<ShopppingCart> AddShoppingCartAsync([Service]ITopicEventSender eventSender, [Service] IShoppingCartData context,long saleOfferId,long userId)
+        {
+
+            var shoppingCart = new ShopppingCart
+            {
+                saleOfferId = saleOfferId,
+                userId = userId
+            };
+
+
+            context.AddShoppingCart(shoppingCart);
+
+            await eventSender.SendAsync("ShoppingCartCreated", shoppingCart);
+
+            
+            return shoppingCart;
 
         }
         
@@ -39,7 +58,7 @@ namespace SEP3_tier2.GraphQL
         }
         
         
-        public async Task<Payment> AddPaymentAsync([Service]ITopicEventSender eventSender, [Service] IPaymentData context,string name,string cardnumber, string expirationdate, string securitycode, string wallet)
+        public async Task<Payment> AddPaymentAsync([Service]ITopicEventSender eventSender, [Service] IPaymentData context,string name,string cardnumber, string expirationdate, string securitycode,long user_id )
         {
             
             var payment = new Payment
@@ -48,8 +67,8 @@ namespace SEP3_tier2.GraphQL
                 cardnumber = cardnumber,
                 expirationdate = expirationdate,
                 securitycode = securitycode,
-                wallet = wallet
-                
+                user_id = user_id
+
             };
             
             context.AddPayment(payment);
@@ -61,43 +80,48 @@ namespace SEP3_tier2.GraphQL
         }
         
         
-        public async Task<Chat> AddChatAsync([Service]ITopicEventSender eventSender, [Service] IChatData context,long user_id, string Chatlist)
+        public async Task<Wallet> AddWalletAsync([Service]ITopicEventSender eventSender, [Service] IWalletData context,int price,long payment_id)
         {
-            
-            var chat = new Chat
-            {
-                user_id = user_id,
-                Chatlist = Chatlist
-                
-            };
-            
-            context.AddChat(chat);
 
-            await eventSender.SendAsync("ChatCreated", chat);
+            var wallet = new Wallet
+            {
+                price = price,
+                payment_id = payment_id
+
+            };
+
+
+            context.AddWallet(wallet);
+
+            await eventSender.SendAsync("WalletCreated", wallet);
+
             
-            return chat;
+            return wallet;
 
         }
         
-        public async Task<SaleOffer> AddSaleOfferAsync([Service]ITopicEventSender eventSender, [Service] IOfferData context,long id, long item_id, int sale_price, long wallet_id, long user_id)
+        
+        
+        public async Task<Wallet> UpdatePriceAsync([Service]ITopicEventSender eventSender, [Service] IWalletData context,int price,long id)
         {
 
-            var saleOffer = new SaleOffer
+            var wallet = new Wallet
             {
-                id = id,
-                item_id = item_id,
-                sale_price = sale_price,
-                wallet_id = wallet_id,
-                user_id = user_id
-            };
-            
-            context.AddSaleOffer(saleOffer);
+                price = price,
+                
 
-            await eventSender.SendAsync("ChatCreated", saleOffer);
+            };
+
+
+            await context.UpdatePriceByPaymentId(wallet,id);
+
+            await eventSender.SendAsync("UpdateWalletCreated", wallet);
+
             
-            return saleOffer;
+            return wallet;
 
         }
+        
         
         
     }

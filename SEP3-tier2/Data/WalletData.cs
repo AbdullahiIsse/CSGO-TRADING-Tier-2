@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -10,38 +9,60 @@ namespace SEP3_tier2.Data
 {
     public class WalletData : IWalletData
     {
-        
-        public async Task<IList<Wallet>>getAllWallets()
+        public async Task<long> SumOfPrice(long id)
         {
             using HttpClient client = new HttpClient();
 
-            var responseMessage = await client.GetAsync("http://localhost:8080/wallet");
+            var responseMessage = await client.GetAsync($"http://localhost:8080/wallet/price/{id}");
 
             var readAsStringAsync = await responseMessage.Content.ReadAsStringAsync();
-            
-            IList<Wallet> chat = JsonSerializer.Deserialize<IList<Wallet>>(readAsStringAsync, new JsonSerializerOptions
+
+
+            long SumPrice = JsonSerializer.Deserialize<long>(readAsStringAsync, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
             });
-            
-            return chat;
+
+            return SumPrice;
         }
-        
-        public async Task<Wallet> getWalletById(long id)
+
+        public async void AddWallet(Wallet wallet)
+        {
+            
+            using HttpClient client = new HttpClient();
+
+            var walletAsJson = JsonSerializer.Serialize(wallet);
+
+            HttpContent httpContent = new StringContent(walletAsJson, Encoding.UTF8, "application/json");
+
+
+            HttpResponseMessage httpResponseMessage = await client.PostAsync("http://localhost:8080/wallet", httpContent);
+            
+            if (!httpResponseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception("failed to add data");
+            }
+
+        }
+
+        public async Task<Wallet> UpdatePriceByPaymentId(Wallet wallet, long id)
         {
             using HttpClient client = new HttpClient();
 
-            var responseMessage = await client.GetAsync("http://localhost:8080/wallet/"+id);
+            var walletSerialize = JsonSerializer.Serialize(wallet);
 
-            var readAsStringAsync = await responseMessage.Content.ReadAsStringAsync();
+            HttpContent httpContent = new StringContent(
+                walletSerialize, Encoding.UTF8, "application/json");
+
+            var httpResponseMessage = await client.PatchAsync($"http://localhost:8080/wallet/{id}", httpContent);
             
-            Wallet chat = JsonSerializer.Deserialize<Wallet>(readAsStringAsync, new JsonSerializerOptions
+            
+            if (!httpResponseMessage.IsSuccessStatusCode)
             {
-                PropertyNameCaseInsensitive = true
-            });
-            
-            return chat;
-        }
+                throw new Exception("failed to update data");
+            }
 
+            return wallet;
+        }
     }
 }

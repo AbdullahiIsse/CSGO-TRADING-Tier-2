@@ -2,6 +2,7 @@ using System;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Threading.Tasks;
 using SEP3_tier2.Models;
 
 namespace SEP3_tier2.Data
@@ -26,5 +27,32 @@ namespace SEP3_tier2.Data
                 throw new Exception("failed to add data");
             }
         }
+        
+        
+        
+        
+        public async Task<Payment> GetPaymentById(long id)
+        {
+            using HttpClient client = new HttpClient();
+
+            var responseMessage = await client.GetAsync($"http://localhost:8080/payment/{id}");
+
+            var readAsStringAsync = await responseMessage.Content.ReadAsStringAsync();
+
+            
+            Payment payment = JsonSerializer.Deserialize<Payment>(readAsStringAsync, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            
+            return payment;
+        }
+        
+        
+        
+        
+        
+        
+        
     }
 }
