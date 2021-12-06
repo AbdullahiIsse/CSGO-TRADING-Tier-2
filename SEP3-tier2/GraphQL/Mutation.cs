@@ -79,7 +79,7 @@ namespace SEP3_tier2.GraphQL
 
         }
         
-        public async Task<SaleOffer> AddSaleOfferAsync([Service]ITopicEventSender eventSender, [Service] IOfferData context,long id, long item_id, int sale_price, long wallet_id)
+        public async Task<SaleOffer> AddSaleOfferAsync([Service]ITopicEventSender eventSender, [Service] IOfferData context,long id, long item_id, int sale_price, long wallet_id, long user_id)
         {
 
             var saleOffer = new SaleOffer
@@ -87,8 +87,8 @@ namespace SEP3_tier2.GraphQL
                 id = id,
                 item_id = item_id,
                 sale_price = sale_price,
-                wallet_id = wallet_id
-
+                wallet_id = wallet_id,
+                user_id = user_id
             };
             
             context.AddSaleOffer(saleOffer);
