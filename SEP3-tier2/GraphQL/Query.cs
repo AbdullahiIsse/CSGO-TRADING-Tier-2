@@ -16,7 +16,6 @@ namespace SEP3_tier2.GraphQL
         
         public  async Task<IList<User>> GetUsers([Service] IUserData context)
         {
-            
             return  await context.getAllUsers();
         }
         
@@ -24,8 +23,14 @@ namespace SEP3_tier2.GraphQL
         [UseSorting]
         public  async Task<IList<Items>> GetItems([Service] IItemData context)
         {
-            
             return  await context.getAllItems();
+        }
+
+        [UseFiltering]
+        [UseSorting]
+        public  async Task<IList<Order>> GetOrder([Service] IOrderData context)
+        {
+            return  await context.getAllOrders();
         }
         
         [UseFiltering]
@@ -39,6 +44,11 @@ namespace SEP3_tier2.GraphQL
         public async Task<Chat> GetChatById([Service] IChatData context,long id)
         {
             return  await context.getChatByID(id);
+        }
+        
+        public async Task<Order> GetOrderById([Service] IOrderData context,long id)
+        {
+            return  await context.getOrderDataByID(id);
         }
 
         
