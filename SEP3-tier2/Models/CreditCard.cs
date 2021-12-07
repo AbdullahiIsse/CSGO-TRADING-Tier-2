@@ -1,6 +1,6 @@
 namespace SEP3_tier2.Models
 {
-    public class Payment
+    public class CreditCard
     {
         public int id { get; set; }
         public string name { get; set; }
@@ -8,6 +8,6 @@ namespace SEP3_tier2.Models
         public string expirationdate { get; set; }
         public string securitycode { get; set; }
 
-        public long user_id { get; set; }
+       
     }
 }

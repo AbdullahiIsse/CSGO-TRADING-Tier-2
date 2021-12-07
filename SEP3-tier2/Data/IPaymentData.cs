@@ -5,8 +5,10 @@ namespace SEP3_tier2.Data
 {
     public interface IPaymentData
     {
-        void AddPayment(Payment payment);
+        void AddPayment(CreditCard creditCard);
 
-        Task<Payment> GetPaymentById(long id);
+        Task<CreditCard> GetPaymentById(long id);
+
+        Task<CreditCard> GetPaymentByName(string name);
     }
 }

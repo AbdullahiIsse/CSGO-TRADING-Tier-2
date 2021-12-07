@@ -90,7 +90,7 @@ namespace SEP3_tier2.GraphQL
 
 
 
-        public async Task<Payment> GetPaymentByUserId([Service] IPaymentData context, long id)
+        public async Task<CreditCard> GetPaymentByUserId([Service] IPaymentData context, long id)
         {
             return await context.GetPaymentById(id);
         }
@@ -98,6 +98,12 @@ namespace SEP3_tier2.GraphQL
         public async Task<long> GetSumOfPriceById([Service] IWalletData context,long id)
         {
             return await context.SumOfPrice(id);
+        }
+
+
+        public async Task<CreditCard> GetPaymentByName([Service] IPaymentData context, string name)
+        {
+            return await context.GetPaymentByName(name);
         }
         
         

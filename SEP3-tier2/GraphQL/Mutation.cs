@@ -58,16 +58,16 @@ namespace SEP3_tier2.GraphQL
         }
         
         
-        public async Task<Payment> AddPaymentAsync([Service]ITopicEventSender eventSender, [Service] IPaymentData context,string name,string cardnumber, string expirationdate, string securitycode,long user_id )
+        public async Task<CreditCard> AddPaymentAsync([Service]ITopicEventSender eventSender, [Service] IPaymentData context,string name,string cardnumber, string expirationdate, string securitycode )
         {
             
-            var payment = new Payment
+            var payment = new CreditCard
             {
                 name = name,
                 cardnumber = cardnumber,
                 expirationdate = expirationdate,
                 securitycode = securitycode,
-                user_id = user_id
+             
 
             };
             
@@ -80,13 +80,13 @@ namespace SEP3_tier2.GraphQL
         }
         
         
-        public async Task<Wallet> AddWalletAsync([Service]ITopicEventSender eventSender, [Service] IWalletData context,int price,long payment_id)
+        public async Task<Wallet> AddWalletAsync([Service]ITopicEventSender eventSender, [Service] IWalletData context,int balance,long user_id)
         {
 
             var wallet = new Wallet
             {
-                price = price,
-                payment_id = payment_id
+                balance = balance,
+                user_id = user_id
 
             };
 
@@ -102,12 +102,12 @@ namespace SEP3_tier2.GraphQL
         
         
         
-        public async Task<Wallet> UpdatePriceAsync([Service]ITopicEventSender eventSender, [Service] IWalletData context,int price,long id)
+        public async Task<Wallet> UpdatePriceAsync([Service]ITopicEventSender eventSender, [Service] IWalletData context,int balance,long id)
         {
 
             var wallet = new Wallet
             {
-                price = price,
+                balance = balance,
                 
 
             };

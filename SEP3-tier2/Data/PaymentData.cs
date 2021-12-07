@@ -9,11 +9,11 @@ namespace SEP3_tier2.Data
 {
     public class PaymentData : IPaymentData
     {
-        public async void AddPayment(Payment payment)
+        public async void AddPayment(CreditCard creditCard)
         {
             using HttpClient client = new HttpClient();
 
-            var paymentAsJson = JsonSerializer.Serialize(payment,new JsonSerializerOptions
+            var paymentAsJson = JsonSerializer.Serialize(creditCard,new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
             });
@@ -31,7 +31,7 @@ namespace SEP3_tier2.Data
         
         
         
-        public async Task<Payment> GetPaymentById(long id)
+        public async Task<CreditCard> GetPaymentById(long id)
         {
             using HttpClient client = new HttpClient();
 
@@ -40,19 +40,29 @@ namespace SEP3_tier2.Data
             var readAsStringAsync = await responseMessage.Content.ReadAsStringAsync();
 
             
-            Payment payment = JsonSerializer.Deserialize<Payment>(readAsStringAsync, new JsonSerializerOptions
+            CreditCard creditCard = JsonSerializer.Deserialize<CreditCard>(readAsStringAsync, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
             });
             
-            return payment;
+            return creditCard;
         }
-        
-        
-        
-        
-        
-        
-        
+
+        public async Task<CreditCard> GetPaymentByName(string name)
+        {
+            using HttpClient client = new HttpClient();
+
+            var responseMessage = await client.GetAsync($"http://localhost:8080/payment/name?name={name}");
+
+            var readAsStringAsync = await responseMessage.Content.ReadAsStringAsync();
+
+            
+            CreditCard creditCard = JsonSerializer.Deserialize<CreditCard>(readAsStringAsync, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            
+            return creditCard;
+        }
     }
 }
