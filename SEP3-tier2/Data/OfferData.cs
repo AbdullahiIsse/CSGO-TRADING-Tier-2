@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -48,16 +49,16 @@ namespace SEP3_tier2.Data
         {
             using HttpClient client = new HttpClient();
 
-            var chatAsJson = JsonSerializer.Serialize(saleOffer);
+            var SaleoffertAsJson = JsonSerializer.Serialize(saleOffer);
 
-            HttpContent httpContent = new StringContent(chatAsJson, Encoding.UTF8, "application/json");
+            HttpContent httpContent = new StringContent(SaleoffertAsJson, Encoding.UTF8, "application/json");
 
 
             HttpResponseMessage httpResponseMessage = await client.PostAsync("http://localhost:8080/saleoffer/", httpContent);
             
             if (!httpResponseMessage.IsSuccessStatusCode)
             {
-                throw new Exception("failed to add data");
+                throw new Exception("failed to add data" + SaleoffertAsJson + httpResponseMessage);
             }
         }
         
