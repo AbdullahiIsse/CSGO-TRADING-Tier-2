@@ -76,8 +76,24 @@ namespace SEP3_tier2.Data
             {
                 PropertyNameCaseInsensitive = true
             });
+            
+            
+            
+            
+            
 
             return price;
+        }
+
+        public async void DeleteShoppingCart(long user_id, long sale_offer_id)
+        {
+            using HttpClient client = new HttpClient();
+            HttpResponseMessage httpResponseMessage = await client.DeleteAsync($"http://localhost:8080/cart/{user_id}/{sale_offer_id}");
+            
+            if (!httpResponseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception("failed to delete data");
+            }
         }
     }
 }

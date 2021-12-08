@@ -17,6 +17,10 @@ namespace SEP3_tier2.Data
         Task<long> GetTotalPriceById(long id);
 
 
+        
+        void DeleteShoppingCart(long user_id, long sale_offer_id);
+
+
 
     }
 }

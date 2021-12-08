@@ -16,13 +16,13 @@ namespace SEP3_tier2.Data
             var responseMessage = await client.GetAsync($"http://localhost:8080/wallet/price/{id}");
 
             var readAsStringAsync = await responseMessage.Content.ReadAsStringAsync();
-
-
+            
             long SumPrice = JsonSerializer.Deserialize<long>(readAsStringAsync, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
             });
-
+            
+            
             return SumPrice;
         }
 

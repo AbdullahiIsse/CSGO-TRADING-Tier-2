@@ -75,9 +75,15 @@ namespace SEP3_tier2.GraphQL
             return await context.getAllOffers();
         }
         
-        public async Task<SaleOffer> GetOfferById([Service] IOfferData context,long id)
+        public async Task<List<SaleOffer>> GetOfferByUserId([Service] IOfferData context,long id)
         {
-            return  await context.getOfferDataByID(id);
+            return  await context.getOfferDataUserByID(id);
+        }
+        
+        
+        public async Task<SaleOffer> GetOfferBySaleOfferId([Service] IOfferData context,long id)
+        {
+            return  await context.GetOfferDataBySaleOfferID(id);
         }
         
         

@@ -51,7 +51,7 @@ namespace SEP3_tier2.GraphQL
         {
             context.RemoveUser(id);
             
-            await eventSender.SendAsync("RemoveTodo", id);
+            await eventSender.SendAsync("RemoveUser", id);
 
             return id;
             
@@ -133,7 +133,7 @@ namespace SEP3_tier2.GraphQL
 
         }
         
-        public async Task<SaleOffer> AddSaleOffer([Service]ITopicEventSender eventSender, [Service] IOfferData context, long item_id ,int sale_price ,long wallet_id ,long user_id)
+        public async Task<SaleOffer> AddSaleOffer([Service]ITopicEventSender eventSender, [Service] IOfferData context, long item_id ,int sale_price ,long wallet_id)
         {
             
             var saleOffer = new SaleOffer
@@ -141,7 +141,6 @@ namespace SEP3_tier2.GraphQL
                 item_id = item_id,
                 sale_price = sale_price,
                 wallet_id = wallet_id,
-                user_id = user_id
             };
 
            
@@ -152,6 +151,18 @@ namespace SEP3_tier2.GraphQL
             
             return saleOffer;
             
+        }
+        
+        
+        
+        public async Task<long> DeleteShoppingCartAsync([Service]ITopicEventSender eventSender, [Service] IShoppingCartData context,long user_id, long sale_offer_id)
+        {
+             context.DeleteShoppingCart(user_id,sale_offer_id);
+            
+            await eventSender.SendAsync("RemoveShoppingCart", user_id);
+
+            return user_id;
+
         }
         
         

@@ -7,7 +7,9 @@ namespace SEP3_tier2.Data
     public interface IOfferData
     {
         Task<IList<SaleOffer>> getAllOffers();
-        Task<SaleOffer> getOfferDataByID(long id);
+        Task<List<SaleOffer>> getOfferDataUserByID(long id);
+
+        Task<SaleOffer> GetOfferDataBySaleOfferID(long id);
         void AddSaleOffer(SaleOffer saleOffer);
     }
 }

@@ -28,7 +28,24 @@ namespace SEP3_tier2.Data
             return items;
         }
 
-        public async Task<SaleOffer> getOfferDataByID(long id)
+        public async Task<List<SaleOffer>> getOfferDataUserByID(long id)
+        {
+            using HttpClient client = new HttpClient();
+
+            var responseMessage = await client.GetAsync("http://localhost:8080/saleoffer/user/"+id);
+
+            var readAsStringAsync = await responseMessage.Content.ReadAsStringAsync();
+
+            
+            List<SaleOffer> item = JsonSerializer.Deserialize<List<SaleOffer>>(readAsStringAsync, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            
+            return item;
+        }
+        
+        public async Task<SaleOffer> GetOfferDataBySaleOfferID(long id)
         {
             using HttpClient client = new HttpClient();
 
@@ -44,6 +61,8 @@ namespace SEP3_tier2.Data
             
             return item;
         }
+        
+        
 
         public async void AddSaleOffer(SaleOffer saleOffer)
         {
