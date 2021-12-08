@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SEP3_tier2.Data;
 using SEP3_tier2.GraphQL;
+using SEP3_tier2.Models;
 
 
 namespace SEP3_tier2
@@ -34,6 +35,7 @@ namespace SEP3_tier2
             services.AddScoped<IOfferData, OfferData>();
             services.AddScoped<IWalletData, WalletData>();
             services.AddScoped<IPaymentData, PaymentData>();
+            services.AddScoped<IOrderData, OrderData>();
             services.AddScoped<IChatData, ChatData>();
             services.AddScoped<IWalletData, WalletData>();
             services.AddScoped<IShoppingCartData, ShoppingCartData>();

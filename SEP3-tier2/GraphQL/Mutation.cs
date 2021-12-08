@@ -100,7 +100,18 @@ namespace SEP3_tier2.GraphQL
 
         }
         
-        
+        public async Task<Order> AddOrderAsync([Service]ITopicEventSender eventSender, [Service] IOrderData context,long buyerId,long sale_Id)
+        {
+            var order = new Order
+            {
+                wallet_buyer_id = buyerId,
+                sale_id = sale_Id
+            };
+            context.AddOrder(order);
+            await eventSender.SendAsync("OrderCreated", order);
+            
+            return order;
+        }
         
         public async Task<Wallet> UpdatePriceAsync([Service]ITopicEventSender eventSender, [Service] IWalletData context,int balance,long id)
         {
