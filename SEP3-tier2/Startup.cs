@@ -36,6 +36,7 @@ namespace SEP3_tier2
             services.AddScoped<IWalletData, WalletData>();
             services.AddScoped<IPaymentData, PaymentData>();
             services.AddScoped<IOrderData, OrderData>();
+            services.AddScoped<ISoldOfferData, SoldOfferData>();
             services.AddScoped<IChatData, ChatData>();
             services.AddScoped<IWalletData, WalletData>();
             services.AddScoped<IShoppingCartData, ShoppingCartData>();
