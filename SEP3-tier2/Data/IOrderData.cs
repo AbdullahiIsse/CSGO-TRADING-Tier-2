@@ -8,6 +8,7 @@ namespace SEP3_tier2.Data
     {
         Task<IList<Order>> getAllOrders();
         Task<Order> getOrderDataByID(long id);
+        Task<Order> getOrderBySaleId(long id);
         
         void AddOrder(Order order);
     }

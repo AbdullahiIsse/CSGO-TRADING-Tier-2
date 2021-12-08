@@ -86,7 +86,6 @@ namespace SEP3_tier2.GraphQL
             return  await context.GetOfferDataBySaleOfferID(id);
         }
         
-        
         public async Task<long> GetCartCountById([Service] IShoppingCartData context,long id)
         {
             return await context.CountCartById(id);
@@ -121,7 +120,21 @@ namespace SEP3_tier2.GraphQL
         {
             return await context.GetPaymentByName(name);
         }
+
+        public async Task<IList<SoldOffer>> GetAllSoldOffer([Service] ISoldOfferData context)
+        {
+            return await context.getAllSoldOffers();
+
+        }
         
+        public async Task<Order> GetOrderBySaleId([Service] IOrderData context,long id)
+        {
+            return await context.getOrderBySaleId(id);
+        }
+        public async Task<SoldOffer> getSoldOfferById([Service] ISoldOfferData context,long id)
+        {
+            return  await context.getSoldOfferDataByID(id);
+        }
         
 
         
