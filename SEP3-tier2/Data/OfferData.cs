@@ -61,7 +61,5 @@ namespace SEP3_tier2.Data
                 throw new Exception("failed to add data" + SaleoffertAsJson + httpResponseMessage);
             }
         }
-        
-        
     }
 }

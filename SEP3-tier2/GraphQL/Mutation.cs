@@ -133,12 +133,11 @@ namespace SEP3_tier2.GraphQL
 
         }
         
-        public async Task<SaleOffer> AddSaleOffer([Service]ITopicEventSender eventSender, [Service] IOfferData context, long id,long item_id ,int sale_price ,long wallet_id ,long user_id)
+        public async Task<SaleOffer> AddSaleOffer([Service]ITopicEventSender eventSender, [Service] IOfferData context, long item_id ,int sale_price ,long wallet_id ,long user_id)
         {
             
             var saleOffer = new SaleOffer
             {
-                id = id,
                 item_id = item_id,
                 sale_price = sale_price,
                 wallet_id = wallet_id,
