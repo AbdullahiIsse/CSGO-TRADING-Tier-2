@@ -44,6 +44,25 @@ namespace SEP3_tier2.Data
             return item;
         }
         
+      
+        public async Task<List<Order>> getOrderByWalletBuyerId(long id)
+        {
+            using HttpClient client = new HttpClient();
+
+            var responseMessage = await client.GetAsync("http://localhost:8080/order/wallet_buyer_id/"+id);
+
+            var readAsStringAsync = await responseMessage.Content.ReadAsStringAsync();
+
+            
+            List<Order> item = JsonSerializer.Deserialize<List<Order>>(readAsStringAsync, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            
+            return item;
+        }
+        
+
         public async Task<Order> getOrderBySaleId(long id)
         {
             using HttpClient client = new HttpClient();

@@ -10,6 +10,8 @@ namespace SEP3_tier2.Data
         Task<Order> getOrderDataByID(long id);
         Task<Order> getOrderBySaleId(long id);
         
+        Task<List<Order>> getOrderByWalletBuyerId(long id);
+        
         void AddOrder(Order order);
     }
 }

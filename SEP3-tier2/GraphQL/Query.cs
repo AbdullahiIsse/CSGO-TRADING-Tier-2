@@ -136,8 +136,24 @@ namespace SEP3_tier2.GraphQL
             return  await context.getSoldOfferDataByID(id);
         }
         
+        
+        public async Task<IList<Order>> getOrderByWalletBuyerId([Service] IOrderData context,long id)
+        {
+            return await context.getOrderByWalletBuyerId(id);
+        }
+        
+        
+        public async Task<IList<SoldOffer>> getSoldOfferByOrderId([Service] ISoldOfferData context,long id)
+        {
+            return await context.getSoldOfferByOrderId(id);
+        }
 
         
+        public async Task<IList<SoldOffer>> getSoldOfferBySellerWalletId([Service] ISoldOfferData context,long id)
+        {
+            return await context.getSoldOfferBySellerWalletId(id);
+        }
+
         
         
         

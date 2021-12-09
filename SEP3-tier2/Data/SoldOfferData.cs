@@ -44,6 +44,43 @@ namespace SEP3_tier2.Data
             return item;
         }
         
+        
+      
+        public async Task<List<SoldOffer>> getSoldOfferByOrderId(long id)
+        {
+            using HttpClient client = new HttpClient();
+
+            var responseMessage = await client.GetAsync("http://localhost:8080/soldoffer/order_id/"+id);
+
+            var readAsStringAsync = await responseMessage.Content.ReadAsStringAsync();
+
+            
+            List<SoldOffer> item = JsonSerializer.Deserialize<List<SoldOffer>>(readAsStringAsync, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            
+            return item;
+        }
+        
+        
+        public async Task<List<SoldOffer>> getSoldOfferBySellerWalletId(long id)
+        {
+            using HttpClient client = new HttpClient();
+
+            var responseMessage = await client.GetAsync("http://localhost:8080/soldoffer/seller_wallet_id/"+id);
+
+            var readAsStringAsync = await responseMessage.Content.ReadAsStringAsync();
+
+            
+            List<SoldOffer> item = JsonSerializer.Deserialize<List<SoldOffer>>(readAsStringAsync, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            
+            return item;
+        }
+        
 
         public async void AddSoldOffer(SoldOffer soldOffer)
         {
