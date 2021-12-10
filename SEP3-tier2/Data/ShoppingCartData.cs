@@ -92,7 +92,7 @@ namespace SEP3_tier2.Data
             
             if (!httpResponseMessage.IsSuccessStatusCode)
             {
-                throw new Exception("failed to delete data");
+                throw new Exception("failed to delete data - Shopping cart");
             }
         }
     }

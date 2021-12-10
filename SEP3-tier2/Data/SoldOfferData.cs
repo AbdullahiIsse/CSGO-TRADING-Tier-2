@@ -80,7 +80,6 @@ namespace SEP3_tier2.Data
             
             return item;
         }
-        
 
         public async void AddSoldOffer(SoldOffer soldOffer)
         {

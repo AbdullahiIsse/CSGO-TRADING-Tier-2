@@ -10,6 +10,8 @@ namespace SEP3_tier2.Data
         Task<List<SaleOffer>> getOfferDataUserByID(long id);
 
         Task<SaleOffer> GetOfferDataBySaleOfferID(long id);
+        
+        void delete(long id);
         void AddSaleOffer(SaleOffer saleOffer);
     }
 }

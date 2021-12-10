@@ -62,7 +62,16 @@ namespace SEP3_tier2.Data
             return item;
         }
         
-        
+        public async void delete(long id)
+        {
+            using HttpClient client = new HttpClient();
+            HttpResponseMessage httpResponseMessage = await client.DeleteAsync($"http://localhost:8080/saleoffer/{id}");
+            
+            if (!httpResponseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception("failed to delete data - Sold Offer Data");
+            }
+        }
 
         public async void AddSaleOffer(SaleOffer saleOffer)
         {

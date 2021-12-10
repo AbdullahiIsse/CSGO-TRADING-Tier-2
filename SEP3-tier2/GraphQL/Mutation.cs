@@ -181,7 +181,14 @@ namespace SEP3_tier2.GraphQL
 
         }
         
-        
+        public async Task<long> deleteSaleOffer([Service]ITopicEventSender eventSender, [Service] IOfferData context,long id)
+        {
+            context.delete(id);
+            
+            await eventSender.SendAsync("RemoveOfferData", id);
+
+            return id;
+        }
         
         public async Task<CreditCard> UpdatePaymentAsync([Service]ITopicEventSender eventSender, [Service] IPaymentData context,string name,string cardnumber,string expirationdate,string securitycode ,long id)
         {
