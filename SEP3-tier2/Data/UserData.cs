@@ -105,10 +105,43 @@ namespace SEP3_tier2.Data
         
         
         
-        
-        
-        
-        
-        
+        public async Task<User> UpdateUser(User user, long id)
+        {
+            
+            using HttpClient client = new HttpClient();
+
+            var userSerialize = JsonSerializer.Serialize(user);
+
+            HttpContent httpContent = new StringContent(
+                userSerialize, Encoding.UTF8, "application/json");
+
+            var httpResponseMessage = await client.PatchAsync($"http://localhost:8080/user/{id}", httpContent);
+            
+            
+            if (!httpResponseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception("failed to update user");
+            }
+
+            return user;
+            
+        }
+
+        public async Task<User> UserBySaleOfferId(long id)
+        {
+            using HttpClient client = new HttpClient();
+
+            var responseMessage = await client.GetAsync($"http://localhost:8080/user/sale/{id}");
+
+            var readAsStringAsync = await responseMessage.Content.ReadAsStringAsync();
+
+            
+            User user = JsonSerializer.Deserialize<User>(readAsStringAsync, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            
+            return user;
+        }
     }
 }

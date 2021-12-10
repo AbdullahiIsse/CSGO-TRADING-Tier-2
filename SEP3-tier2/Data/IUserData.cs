@@ -14,5 +14,10 @@ namespace SEP3_tier2.Data
         
         Task<User> getUserByID(long id);
 
+        Task<User> UpdateUser(User user, long id);
+        
+        
+        Task<User> UserBySaleOfferId(long id);
+
     }
 }

@@ -205,6 +205,27 @@ namespace SEP3_tier2.GraphQL
         
         
         
+        public async Task<User> UpdateUserAsync([Service]ITopicEventSender eventSender, [Service] IUserData context,string username,string password,long securitylevel,long id)
+        {
+
+            var user = new User
+            {
+                username = username,
+                password = password,
+                securitylevel = securitylevel
+            };
+            
+            await context.UpdateUser(user,id);
+
+            await eventSender.SendAsync("UpdateUserCreated", user);
+
+            
+            return user;
+
+        }
+        
+        
+        
         
     }
 }

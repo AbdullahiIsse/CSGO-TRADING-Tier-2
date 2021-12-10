@@ -63,6 +63,12 @@ namespace SEP3_tier2.GraphQL
         }
         
         
+        public async Task<User> GetUserBySaleOfferId([Service] IUserData context,long id)
+        {
+            return await context.UserBySaleOfferId(id);
+        }
+        
+        
         public async Task<User> ValidateUser([Service] IUserData context,string username,string password)
         {
             return await context.ValidateUser(username, password);
