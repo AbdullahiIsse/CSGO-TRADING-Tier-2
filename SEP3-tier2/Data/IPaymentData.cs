@@ -10,5 +10,8 @@ namespace SEP3_tier2.Data
         Task<CreditCard> GetPaymentById(long id);
 
         Task<CreditCard> GetPaymentByName(string name);
+
+
+        Task<CreditCard> UpdatePayment(CreditCard creditCard, long id);
     }
 }

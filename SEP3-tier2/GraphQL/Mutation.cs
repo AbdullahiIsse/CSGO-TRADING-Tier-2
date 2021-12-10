@@ -183,6 +183,28 @@ namespace SEP3_tier2.GraphQL
         
         
         
+        public async Task<CreditCard> UpdatePaymentAsync([Service]ITopicEventSender eventSender, [Service] IPaymentData context,string name,string cardnumber,string expirationdate,string securitycode ,long id)
+        {
+
+            var payment = new CreditCard
+            {
+                name = name,
+                cardnumber = cardnumber,
+                expirationdate = expirationdate,
+                securitycode = securitycode
+            };
+
+            await context.UpdatePayment(payment,id);
+
+            await eventSender.SendAsync("UpdatePaymentCreated", payment);
+
+            
+            return payment;
+
+        }
+        
+        
+        
         
     }
 }

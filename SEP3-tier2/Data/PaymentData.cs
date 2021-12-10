@@ -64,5 +64,39 @@ namespace SEP3_tier2.Data
             
             return creditCard;
         }
+
+
+
+
+
+        public async Task<CreditCard> UpdatePayment(CreditCard creditCard, long id)
+        {
+            
+            using HttpClient client = new HttpClient();
+
+            var creditCardSerialize = JsonSerializer.Serialize(creditCard);
+
+            HttpContent httpContent = new StringContent(
+                creditCardSerialize, Encoding.UTF8, "application/json");
+
+            var httpResponseMessage = await client.PatchAsync($"http://localhost:8080/payment/{id}", httpContent);
+            
+            
+            if (!httpResponseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception("failed to update payment");
+            }
+
+            return creditCard;
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
     }
 }
