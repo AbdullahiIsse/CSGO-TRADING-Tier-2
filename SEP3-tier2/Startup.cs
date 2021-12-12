@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Graph.ArgumentValidator;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -42,6 +43,7 @@ namespace SEP3_tier2
 
             services.AddGraphQLServer()
                 .AddQueryType<Query>()
+                .AddArgumentValidator()
                 .AddFiltering()
                 .AddSorting()
                 .AddMutationType<Mutation>()

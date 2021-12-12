@@ -80,7 +80,7 @@ namespace SEP3_tier2.Data
             return item;
         }
 
-        public async void AddOrder(Order order)
+        public async Task AddOrder(Order order)
         {
             using HttpClient client = new HttpClient();
 

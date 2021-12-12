@@ -89,5 +89,28 @@ namespace SEP3_tier2.Data
                 throw new Exception("failed to add data" + SaleoffertAsJson + httpResponseMessage);
             }
         }
+        
+        
+        
+        
+        
+        
+        public async Task<long> UpdateSaleOfferToFalse(long id)
+        {
+            
+            using HttpClient client = new HttpClient();
+            
+
+            var httpResponseMessage = await client.PutAsync($"http://localhost:8080/saleoffer/{id}",null);
+            
+            
+            if (!httpResponseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception("failed to saleOffer To false");
+            }
+
+            return id;
+
+        }
     }
 }

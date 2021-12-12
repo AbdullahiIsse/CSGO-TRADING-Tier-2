@@ -13,6 +13,6 @@ namespace SEP3_tier2.Data
         
         Task<List<SoldOffer>> getSoldOfferBySellerWalletId(long id);
         
-        void AddSoldOffer(SoldOffer saleOffer);
+        Task AddSoldOffer(SoldOffer saleOffer);
     }
 }

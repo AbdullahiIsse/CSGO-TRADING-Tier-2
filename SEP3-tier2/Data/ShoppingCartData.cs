@@ -46,7 +46,7 @@ namespace SEP3_tier2.Data
             return shoppingCarts;
         }
 
-        public async void AddShoppingCart(ShopppingCart shopppingCart)
+        public async Task AddShoppingCart(ShopppingCart shopppingCart)
         {
             using HttpClient client = new HttpClient();
 
@@ -85,7 +85,7 @@ namespace SEP3_tier2.Data
             return price;
         }
 
-        public async void DeleteShoppingCart(long user_id, long sale_offer_id)
+        public async Task DeleteShoppingCart(long user_id, long sale_offer_id)
         {
             using HttpClient client = new HttpClient();
             HttpResponseMessage httpResponseMessage = await client.DeleteAsync($"http://localhost:8080/cart/{user_id}/{sale_offer_id}");

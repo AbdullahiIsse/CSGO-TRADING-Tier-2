@@ -12,6 +12,6 @@ namespace SEP3_tier2.Data
         
         Task<List<Order>> getOrderByWalletBuyerId(long id);
         
-        void AddOrder(Order order);
+        Task AddOrder(Order order);
     }
 }

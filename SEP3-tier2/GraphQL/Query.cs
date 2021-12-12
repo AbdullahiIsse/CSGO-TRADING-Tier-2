@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using HotChocolate;
 using HotChocolate.Data;
+using HotChocolate.Subscriptions;
 using SEP3_tier2.Data;
 using SEP3_tier2.Models;
 
@@ -160,9 +161,9 @@ namespace SEP3_tier2.GraphQL
             return await context.getSoldOfferBySellerWalletId(id);
         }
 
-        
-        
-        
-        
+
+
+
+
     }
 }

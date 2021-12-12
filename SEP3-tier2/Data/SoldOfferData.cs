@@ -81,7 +81,7 @@ namespace SEP3_tier2.Data
             return item;
         }
 
-        public async void AddSoldOffer(SoldOffer soldOffer)
+        public async Task AddSoldOffer(SoldOffer soldOffer)
         {
             using HttpClient client = new HttpClient();
 
@@ -97,7 +97,7 @@ namespace SEP3_tier2.Data
                 throw new Exception("failed to add data");
             }
         }
-        
-        
+
+
     }
 }

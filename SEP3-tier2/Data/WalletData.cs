@@ -26,7 +26,7 @@ namespace SEP3_tier2.Data
             return SumPrice;
         }
 
-        public async void AddWallet(Wallet wallet)
+        public async Task AddWallet(Wallet wallet)
         {
             
             using HttpClient client = new HttpClient();

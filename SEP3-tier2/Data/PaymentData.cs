@@ -9,7 +9,7 @@ namespace SEP3_tier2.Data
 {
     public class PaymentData : IPaymentData
     {
-        public async void AddPayment(CreditCard creditCard)
+        public async Task AddPayment(CreditCard creditCard)
         {
             using HttpClient client = new HttpClient();
 

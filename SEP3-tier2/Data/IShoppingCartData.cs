@@ -11,14 +11,14 @@ namespace SEP3_tier2.Data
 
         Task<IList<ShowShoppingCart>> ShowShoppingCartById(long id);
         
-        void AddShoppingCart(ShopppingCart shopppingCart);
+        Task AddShoppingCart(ShopppingCart shopppingCart);
 
 
         Task<long> GetTotalPriceById(long id);
 
 
         
-        void DeleteShoppingCart(long user_id, long sale_offer_id);
+        Task DeleteShoppingCart(long user_id, long sale_offer_id);
 
 
 

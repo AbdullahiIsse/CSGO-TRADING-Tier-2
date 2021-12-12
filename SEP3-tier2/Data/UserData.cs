@@ -30,7 +30,7 @@ namespace SEP3_tier2.Data
             return user;
         }
 
-        public async void AddUser(User user)
+        public async Task<User> AddUser(User user)
         {
             
             using HttpClient client = new HttpClient();
@@ -46,11 +46,12 @@ namespace SEP3_tier2.Data
             {
                 throw new Exception("failed to add data");
             }
-            
+
+            return user;
         }
         
         
-        public async void RemoveUser(long id)
+        public async Task RemoveUser(long id)
         {
             using HttpClient client = new HttpClient();
             HttpResponseMessage httpResponseMessage = await client.DeleteAsync($"http://localhost:8080/user/{id}");
