@@ -61,7 +61,24 @@ namespace SEP3_tier2.Data
             
             return item;
         }
-        
+
+        public async Task<IList<SaleOfferWallet>> GetItemsById(long id)
+        {
+            using HttpClient client = new HttpClient();
+
+            var responseMessage = await client.GetAsync($"http://localhost:8080/saleoffer/wallet/{id}");
+
+            var readAsStringAsync = await responseMessage.Content.ReadAsStringAsync();
+
+            
+            IList<SaleOfferWallet> saleOfferWallets = JsonSerializer.Deserialize<IList<SaleOfferWallet>>(readAsStringAsync, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            
+            return saleOfferWallets;
+        }
+
         public async void delete(long id)
         {
             using HttpClient client = new HttpClient();

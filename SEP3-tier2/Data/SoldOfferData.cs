@@ -98,6 +98,21 @@ namespace SEP3_tier2.Data
             }
         }
 
+        public async Task<IList<SoldOfferBySeller>> GetSoldItemsById(long id)
+        {
+            using HttpClient client = new HttpClient();
 
+            var responseMessage = await client.GetAsync($"http://localhost:8080/soldoffer/{id}");
+
+            var readAsStringAsync = await responseMessage.Content.ReadAsStringAsync();
+
+            
+            List<SoldOfferBySeller> sellers = JsonSerializer.Deserialize<List<SoldOfferBySeller>>(readAsStringAsync, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            
+            return sellers;
+        }
     }
 }

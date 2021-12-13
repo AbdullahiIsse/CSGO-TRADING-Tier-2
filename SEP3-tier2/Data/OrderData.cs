@@ -61,7 +61,24 @@ namespace SEP3_tier2.Data
             
             return item;
         }
-        
+
+        public async Task<IList<OrderByBuyer>> GetBoughtItems(long id)
+        {
+            using HttpClient client = new HttpClient();
+
+            var responseMessage = await client.GetAsync($"http://localhost:8080/order/{id}");
+
+            var readAsStringAsync = await responseMessage.Content.ReadAsStringAsync();
+
+            
+            List<OrderByBuyer> buyer = JsonSerializer.Deserialize<List<OrderByBuyer>>(readAsStringAsync, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            
+            return buyer;
+        }
+
 
         public async Task<Order> getOrderBySaleId(long id)
         {

@@ -150,6 +150,12 @@ namespace SEP3_tier2.GraphQL
         }
         
         
+        public async Task<IList<OrderByBuyer>> GetBoughtItems([Service] IOrderData context,long id)
+        {
+            return await context.GetBoughtItems(id);
+        }
+        
+        
         public async Task<IList<SoldOffer>> getSoldOfferByOrderId([Service] ISoldOfferData context,long id)
         {
             return await context.getSoldOfferByOrderId(id);
@@ -159,6 +165,23 @@ namespace SEP3_tier2.GraphQL
         public async Task<IList<SoldOffer>> getSoldOfferBySellerWalletId([Service] ISoldOfferData context,long id)
         {
             return await context.getSoldOfferBySellerWalletId(id);
+        }
+        
+        
+        
+        public async Task<IList<SoldOfferBySeller>> GetSoldItemsById([Service] ISoldOfferData context,long id)
+        {
+            return await context.GetSoldItemsById(id);
+        }
+        
+        
+        
+        
+        
+        
+        public async Task<IList<SaleOfferWallet>> GetItemsById([Service] IOfferData context,long id)
+        {
+            return await context.GetItemsById(id);
         }
 
 

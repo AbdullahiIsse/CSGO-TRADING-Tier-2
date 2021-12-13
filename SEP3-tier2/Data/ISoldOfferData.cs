@@ -14,5 +14,7 @@ namespace SEP3_tier2.Data
         Task<List<SoldOffer>> getSoldOfferBySellerWalletId(long id);
         
         Task AddSoldOffer(SoldOffer saleOffer);
+        
+        Task<IList<SoldOfferBySeller>> GetSoldItemsById(long id);
     }
 }

@@ -12,7 +12,9 @@ namespace SEP3_tier2.Data
         Task<SaleOffer> GetOfferDataBySaleOfferID(long id);
 
         Task<long> UpdateSaleOfferToFalse(long id);
-        
+
+        Task<IList<SaleOfferWallet>> GetItemsById(long id);
+
         void delete(long id);
         void AddSaleOffer(SaleOffer saleOffer);
     }
