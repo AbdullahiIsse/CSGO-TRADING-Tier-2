@@ -15,7 +15,17 @@ namespace SEP3_tier2.GraphQL
     public class Mutation
     {
         public async Task<User> AddUserAsync([Service] ITopicEventSender eventSender,
-            [Service] IUserData context, [Required] string username, [Required] string password)
+            [Service] IUserData context,
+            [Required(ErrorMessage = "username can not be empty")]
+            [MinLength(4, ErrorMessage = "username must be more then 3 characters")]
+            [MaxLength(14, ErrorMessage = "username can not be more then 14 characters")]
+            string username,
+            [Required(ErrorMessage = "password can not be empty")]
+            [MinLength(8, ErrorMessage = "password must be more then 7 characters")]
+            [MaxLength(14, ErrorMessage = "password can not be more then 14 characters")]
+            string password)
+
+
         {
             try
             {
@@ -50,7 +60,7 @@ namespace SEP3_tier2.GraphQL
             };
 
 
-           await context.AddShoppingCart(shoppingCart);
+            await context.AddShoppingCart(shoppingCart);
 
             await eventSender.SendAsync("ShoppingCartCreated", shoppingCart);
 
@@ -61,7 +71,7 @@ namespace SEP3_tier2.GraphQL
         public async Task<long> DeleteUserAsync([Service] ITopicEventSender eventSender, [Service] IUserData context,
             long id)
         {
-           await context.RemoveUser(id);
+            await context.RemoveUser(id);
 
             await eventSender.SendAsync("RemoveUser", id);
 
@@ -70,7 +80,21 @@ namespace SEP3_tier2.GraphQL
 
 
         public async Task<CreditCard> AddPaymentAsync([Service] ITopicEventSender eventSender,
-            [Service] IPaymentData context, string name, string cardnumber, string expirationdate, string securitycode)
+            [Service] IPaymentData context,
+            [Required(ErrorMessage = "CardholderName cannot be empty")]
+            [MinLength(4, ErrorMessage = "CardholderName cannot be less than 4")]
+            [MaxLength(12, ErrorMessage = "CardholderName cannot be more than 12")]
+            string name,
+            [Required(ErrorMessage = "CardNumber cannot be empty")]
+            [MinLength(16, ErrorMessage = "CardNumber must contain 16 characters")]
+            [MaxLength(16, ErrorMessage = "CardNumber must contain 16 characters")]
+            string cardnumber,
+            [Required(ErrorMessage = "ExpirationDate cannot be empty")]
+            string expirationdate,
+            [Required(ErrorMessage = "CVV must contain more than 0 characters")]
+            [MinLength(3, ErrorMessage = "CVV must contain  3 characters")]
+            [MaxLength(3, ErrorMessage = "CVV must contain  3 characters")]
+            string securitycode)
         {
             var payment = new CreditCard
             {
@@ -80,7 +104,7 @@ namespace SEP3_tier2.GraphQL
                 securitycode = securitycode,
             };
 
-          await  context.AddPayment(payment);
+            await context.AddPayment(payment);
 
             await eventSender.SendAsync("PaymentCreated", payment);
 
@@ -130,7 +154,7 @@ namespace SEP3_tier2.GraphQL
                 sale_price = sale_price,
                 seller_wallet_id = seller_wallet_id,
             };
-            
+
             await context.AddSoldOffer(SoldOffer);
             await eventSender.SendAsync("SoldOfferCreated", SoldOffer);
 
@@ -177,7 +201,7 @@ namespace SEP3_tier2.GraphQL
         public async Task<long> DeleteShoppingCartAsync([Service] ITopicEventSender eventSender,
             [Service] IShoppingCartData context, long user_id, long sale_offer_id)
         {
-           await context.DeleteShoppingCart(user_id, sale_offer_id);
+            await context.DeleteShoppingCart(user_id, sale_offer_id);
 
             await eventSender.SendAsync("RemoveShoppingCart", user_id);
 
@@ -234,19 +258,13 @@ namespace SEP3_tier2.GraphQL
         }
 
 
-        public async Task<long> UpdateSaleOfferToFalse([Service] ITopicEventSender eventSender, [Service] IOfferData context,
+        public async Task<long> UpdateSaleOfferToFalse([Service] ITopicEventSender eventSender,
+            [Service] IOfferData context,
             long id)
         {
-
             await context.UpdateSaleOfferToFalse(id);
 
             return id;
-
-
-
         }
-        
-        
-        
     }
 }
