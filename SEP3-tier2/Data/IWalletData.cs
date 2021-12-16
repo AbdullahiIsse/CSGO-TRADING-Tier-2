@@ -13,6 +13,8 @@ namespace SEP3_tier2.Data
         Task<Wallet> UpdatePriceByPaymentId(Wallet wallet, long id);
 
 
+        Task<Wallet> getWalletById(long id);
+
 
 
     }

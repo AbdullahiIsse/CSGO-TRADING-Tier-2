@@ -183,6 +183,13 @@ namespace SEP3_tier2.GraphQL
         {
             return await context.GetItemsById(id);
         }
+        
+        
+        
+        public Task<Wallet> GetWalletById([Service] IWalletData context,long id)
+        {
+            return  context.getWalletById(id);
+        }
 
 
 
