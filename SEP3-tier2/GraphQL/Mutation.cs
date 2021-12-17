@@ -266,5 +266,27 @@ namespace SEP3_tier2.GraphQL
 
             return id;
         }
+        
+        public async Task<SaleOffer> UpdateSaleOffer([Service] ITopicEventSender eventSender,
+            [Service] IOfferData context,int sale_price,bool available, long id)
+        {
+
+            var saleoffer = new SaleOffer
+            {
+                sale_price = sale_price,
+                available = available
+            };
+            
+            
+            await context.UpdateSaleOffer(saleoffer,id);
+
+            return saleoffer;
+        }
+        
+        
+        
+        
+        
+        
     }
 }

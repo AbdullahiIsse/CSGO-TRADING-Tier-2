@@ -88,7 +88,13 @@ namespace SEP3_tier2.Data
             {
                 throw new Exception("failed to delete data - Sold Offer Data");
             }
+            
+            
         }
+        
+        
+        
+        
 
         public async void AddSaleOffer(SaleOffer saleOffer)
         {
@@ -106,12 +112,28 @@ namespace SEP3_tier2.Data
                 throw new Exception("failed to add data" + SaleoffertAsJson + httpResponseMessage);
             }
         }
-        
-        
-        
-        
-        
-        
+
+        public async Task<SaleOffer> UpdateSaleOffer(SaleOffer saleOffer, long id)
+        {
+            using HttpClient client = new HttpClient();
+
+            var saleOfferSerialize = JsonSerializer.Serialize(saleOffer);
+
+            HttpContent httpContent = new StringContent(
+                saleOfferSerialize, Encoding.UTF8, "application/json");
+
+            var httpResponseMessage = await client.PatchAsync($"http://localhost:8080/saleoffer/{id}", httpContent);
+            
+            
+            if (!httpResponseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception("failed to update data");
+            }
+
+            return saleOffer;
+        }
+
+
         public async Task<long> UpdateSaleOfferToFalse(long id)
         {
             

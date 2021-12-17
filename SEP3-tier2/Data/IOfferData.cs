@@ -17,5 +17,8 @@ namespace SEP3_tier2.Data
 
         void delete(long id);
         void AddSaleOffer(SaleOffer saleOffer);
+
+
+        Task<SaleOffer> UpdateSaleOffer(SaleOffer saleOffer, long id);
     }
 }
